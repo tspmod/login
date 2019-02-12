@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>REGISTER</title>
+
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+
+  <div class="container">
+
+      <form onclick="return false;">
+
+          <h1>SIGN UP</h1>
+
+          <p id='status'></p>
+
+          <input id="email" type="text" placeholder="Enter Email" name="email" required>
+          <input id="password" type="password" placeholder="Enter Password" name="psw" required>
+          <input id="password2" type="password" placeholder="Repeat Password" name="psw-repeat" required>
+
+
+          <button id="btn" onclick="addUser();" type="submit" class="registerbtn">Sign Up</button>
+
+      </form>
+
+      <p>Already have an account? <button id="btn2"><a href="index.html">Login</a></button></p>
+
+    </div>
+
+
+
+  <script>
+    function addUser() {
+      if(document.getElementById('password').value === document.getElementById('password2').value){
+
+      var user = {};
+      user.email= document.getElementById('email').value;
+      user.password = document.getElementById('password').value;
+
+    var userToJson = {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+
+    fetch("http://localhost:3030/user/add", userToJson)
+    .then(res =>res.json())
+    .then(res => document.getElementById('status').innerHTML = res.respond);
+
+    }
+
+    else {
+      document.getElementById('status').innerHTML = "password do not match";
+    }
+  }
+
+  </script>
+</body>
+</html>

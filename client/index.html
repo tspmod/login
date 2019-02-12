@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SIGN UP</title>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="game/phaser.js"></script>
+	<script src="game/scene1.js"></script>
+	<script src="game/scene2.js"></script>
+	<script src="game/startscreen.js"></script>
+
+</head>
+<body onload="loggedIn();">
+	<div id="logMe" class="container">
+
+
+
+		<form onclick="return false;">
+
+			  <h1>LOG IN</h1>
+
+				<p id='status'></p>
+
+			<div class="textfield">
+			    <input id="email" type="text" placeholder="Enter Email" name="uname" required>
+			    <input id="password" type="password" placeholder="Enter Password" name="psw" required>
+
+			    <button id="btn" type="submit" onclick="logUser();">Login</button>
+
+			</div>
+		</form>
+
+		<p>Register here!! <button id="btn2"><a href="register.html">Sign Up</a></button></p>
+	</div>
+
+<script>
+
+function logUser() {
+
+	var user = {};
+	user.email= document.getElementById('email').value;
+	user.password = document.getElementById('password').value;
+
+var userToJson = {
+	method: "POST",
+	body: JSON.stringify(user),
+	headers: {
+		"Content-Type": "application/json"
+	}
+}
+
+fetch("http://localhost:3030/user/login", userToJson)
+.then(res =>res.json())
+.then(res => {
+	if(res.respond == 'successful'){
+		window.location.href = 'index.html';
+	}
+});
+
+}
+
+function loggedIn() {
+	fetch('http://localhost:3030/user/dashboard')
+	.then(res => res.json())
+	.then(res => {
+		if(res.respond !== false) {
+			document.getElementById('logMe').style.display = 'none';
+			var script = document.createElement('script');
+			script.src = "game/game.js";
+			document.getElementsByTagName('head')[0].appendChild(script);
+		}
+		else{
+			document.getElementById('logMe').style.display = 'block';
+		}
+	});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+body {
+	background: url('../images/background.jpg');
+	background-position: center center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+
+
+.container {
+	width: 400px;
+	height: 350px;
+	background: rgba(0, 0, 0, 0.4);
+	padding: 40px;
+	color: white;
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+	border-radius: 25px;
+	display: block;
+
+}
+
+input[type=text], input[type=password] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: none;
+	box-sizing: border-box;
+}
+
+#btn {
+	background-color: #5472ff;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	width: 100%;
+}
+
+#btn:hover {
+	opacity: 0.6;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+#logMe {
+	display: none;
+}
